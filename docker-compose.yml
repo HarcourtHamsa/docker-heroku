@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: bankapp-frontend
+    ports:
+      - "3000:3000"
+    tty: true
+    volumes:
+      # syntax is source:destination
+      - ./client:/usr/src/app/client
+      - /usr/app/src/app/client/node_modules
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: bankapp-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      # syntax is source:destination
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongodb
+    env_file: ./server/.env
+    environment:
+      - ATLAS_URI=mongodb+srv://Harcourt:eckankar2757101@testcluster-hlwy0.gcp.mongodb.net/test?retryWrites=true&w=majority
+      - CLOUDINARY_API_KEY=954733932424813
+      - CLOUDINARY_API_SECRET=Na6g4CJ4jFqQM5ZEOE5w3yiAKYE
+
+  mongodb:
+    image: mongo
+    container_name: bankapp-database

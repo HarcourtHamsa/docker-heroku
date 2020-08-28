@@ -1,0 +1,17 @@
+.jumbotron {
+    height: 500px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/slide2.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+   
+   }
+
+.text-blue{
+    color: #002878
+}
+
+.btn-red{
+        border: 1px solid #a11d15;
+        padding: 8px 11px 8px;
+        background-color: #dc291e;
+}
